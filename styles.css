@@ -1,3 +1,13 @@
+:root {
+  /* colors */
+  --primary: hsl(10, 79%, 65%);
+  --secondary: hsl(186, 34%, 60%);
+  --darkBrown: hsl(25, 47%, 15%);
+  --lightBrown: hsl(28, 10%, 53%);
+  --neutral: hsl(27, 66%, 92%);
+  --white: hsl(33, 100%, 98%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,14 +24,20 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   font-family: 'DM Sans', Arial, Helvetica, sans-serif;
-  color: hsl(25, 47%, 15%);
+  color: var(--darkBrown);
   list-style: none;
+}
+
+/* global */
+.title--small {
+  font-weight: 400;
+  font-size: 1.6rem;
 }
 
 .component__container {
   width: 100%;
   height: 100vh;
-  background-color: hsl(27, 66%, 92%);
+  background-color: var(--neutral);
 }
 
 .account-details__container {
@@ -40,16 +56,12 @@ body {
   margin-bottom: 1.8rem;
   padding: 2rem 1.8rem;
   border-radius: 10px;
-  color: white;
-  background-color: hsl(10, 79%, 65%);
-}
-.balance__title {
-  margin-bottom: 0.6rem;
+  color: var(--white);
+  background-color: var(--primary);
 }
 
-.title--small {
-  font-weight: 400;
-  font-size: 1.6rem;
+.balance__title {
+  margin-bottom: 0.6rem;
 }
 
 .balance__amount {
@@ -69,13 +81,13 @@ body {
 }
 
 .circle--solid {
-  background-color: hsl(25, 47%, 15%);
+  background-color: var(--darkBrown);
 }
 
 .circle--open {
   position: absolute;
   left: -2rem;
-  border: 0.2rem solid hsl(33, 100%, 98%);
+  border: 0.2rem solid var(--white);
 }
 
 /* code for rendering circle for logo as pseudo */
@@ -88,7 +100,7 @@ body {
   height: 2.8rem;
   border-radius: 50%;
   left: -3.2rem;
-  border: 0.2rem solid hsl(33, 100%, 98%);
+  border: 0.2rem solid var(--white);
 } */
 
 .spending__container {
@@ -96,8 +108,9 @@ body {
   flex-direction: column;
   padding: 2rem;
   border-radius: 10px;
-  background-color: hsl(33, 100%, 98%);
+  background-color: var(--white);
 }
+
 .spending__title {
   margin-bottom: 2rem;
 }
@@ -112,8 +125,8 @@ body {
   justify-items: center;
   padding-bottom: 2.4rem;
   font-size: 1.4rem;
-  border-bottom: 2px solid hsl(27, 66%, 92%);
-  color: hsl(28, 10%, 53%);
+  border-bottom: 2px solid var(--neutral);
+  color: var(--lightBrown);
 }
 
 .weekly-graph__item {
@@ -141,8 +154,8 @@ body {
   padding: 0.8rem 0;
   text-align: center;
   border-radius: 6px;
-  color: hsl(33, 100%, 98%);
-  background-color: hsl(25, 47%, 15%);
+  color: var(--white);
+  background-color: var(--darkBrown);
   opacity: 0;
 }
 
@@ -154,7 +167,7 @@ body {
 .weekly-graph__bar {
   width: 2.4em;
   border-radius: 4px;
-  background-color: hsl(10, 79%, 65%);
+  background-color: var(--primary);
 }
 
 .weekly-graph__day {
@@ -185,7 +198,7 @@ body {
 }
 
 .monthly__title {
-  color: hsl(28, 10%, 53%);
+  color: var(--lightBrown);
   margin-bottom: 0.2rem;
 }
 
@@ -196,7 +209,7 @@ body {
 
 .monthly__difference {
   padding-bottom: 0.4rem;
-  color: hsl(28, 10%, 53%);
+  color: var(--lightBrown);
 }
 
 .monthly__difference--amount {
@@ -204,7 +217,7 @@ body {
   text-align: right;
   font-weight: 700;
   font-size: 1.6rem;
-  color: hsl(25, 47%, 15%);
+  color: var(--darkBrown);
 }
 
 @media only screen and (min-width: 768px) {

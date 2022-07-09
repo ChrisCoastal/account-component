@@ -3,22 +3,12 @@
 // DOM insert point
 const weeklyGraphEl = document.querySelector('.weekly-graph');
 
-// const barGraphElements = getBarElements();
-// function getBarElements() {
-//   const elements = [];
-//   for (let i = 1; i <= 7; i++) {
-//     const element = document.getElementsByClassName(`bar--day-${i}`);
-//     elements.push([...element]);
-//   }
-//   return elements.flat();
-// }
-// console.log(barGraphElements);
-
 // fetch data HTTP request
 const fetchData = async (path) => {
   try {
     const response = await fetch(path);
     const data = await response.json();
+
     return data;
   } catch (error) {
     console.log(error);
@@ -30,7 +20,7 @@ const barGraphData = await fetchData('./data.json');
 console.log(barGraphData); // { day: string, amount: number }
 
 // find highest spending day
-const highest = barGraphData.reduce(
+const highestDay = barGraphData.reduce(
   (acc, cV, i) => {
     const highest =
       cV.amount > acc.amount // if current > prev amount, then highest === [current]
@@ -42,13 +32,13 @@ const highest = barGraphData.reduce(
   },
   { dayIndex: [], amount: 0 }
 );
-console.log(highest);
+console.log(highestDay);
 
 // render bar graph items
 const barGraph = barGraphData
   .map((dayData, i) => {
-    const mostSpent = highest.dayIndex.includes(i);
-    const barRatio = 100 / highest.amount;
+    const mostSpent = highestDay.dayIndex.includes(i);
+    const barRatio = 100 / highestDay.amount;
     const barHeight = (dayData.amount * barRatio).toFixed(1);
     const bgColor = mostSpent ? 'hsl(186, 34%, 60%)' : 'hsl(10, 79%, 65%)';
     const divStyle = `style="height: ${barHeight}%; background-color: ${bgColor};"`;

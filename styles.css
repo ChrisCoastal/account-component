@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  list-style: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: hsl(25, 47%, 15%);
+  list-style: none;
+}
+
+.component__container {
+  width: 100%;
+  height: 100vh;
+  background-color: hsl(27, 66%, 92%);
+}
+
+.account-details__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  transform: translate(-50%, -50%);
+}
+
+/* balance section */
+.balance__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  padding: 2rem 1.8rem;
+  border-radius: 10px;
+  color: white;
+  background-color: hsl(10, 79%, 65%);
+}
+.balance__title {
+  margin-bottom: 0.6rem;
+}
+
+.title--small {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.balance__amount {
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 0.1rem;
+}
+
+.balance__container--logo {
+  position: relative;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.circle--solid {
+  background-color: hsl(25, 47%, 15%);
+}
+
+.circle--open {
+  position: absolute;
+  left: -2rem;
+  border: 0.2rem solid hsl(33, 100%, 98%);
+}
+
+/* code for rendering circle for logo as pseudo */
+/* px are slightly off with this approach */
+/* .circle--solid::before {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  width: 3rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  left: -3.2rem;
+  border: 0.2rem solid hsl(33, 100%, 98%);
+} */
+
+.spending__container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: hsl(33, 100%, 98%);
+}
+.spending__title {
+  margin-bottom: 2rem;
+}
+
+/* bar graph section */
+.weekly-graph {
+  display: grid;
+  height: 37vh;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.2rem;
+  align-items: end;
+  justify-items: center;
+  padding-bottom: 2.4rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid hsl(27, 66%, 92%);
+  color: hsl(28, 10%, 53%);
+}
+
+.weekly-graph__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: center;
+}
+
+.weekly-graph__bar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: center;
+}
+
+.weekly-graph__amount {
+  margin-bottom: 0.8rem;
+  width: 140%;
+  padding: 0.8rem 0;
+  text-align: center;
+  border-radius: 6px;
+  color: hsl(33, 100%, 98%);
+  background-color: hsl(25, 47%, 15%);
+  opacity: 0;
+}
+
+.weekly-graph__amount,
+.weekly-graph__bar {
+  transition: all 240ms ease-in-out;
+}
+
+.weekly-graph__bar {
+  width: 2.4em;
+  border-radius: 4px;
+  background-color: hsl(10, 79%, 65%);
+}
+
+.weekly-graph__day {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.weekly-graph__item:hover {
+  cursor: pointer;
+}
+
+.weekly-graph__item:hover > div .weekly-graph__bar {
+  opacity: 0.66;
+}
+
+.weekly-graph__item:hover > div .weekly-graph__amount {
+  opacity: initial;
+  opacity: 1;
+}
+
+/* monthly totals section */
+.monthly {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 2.2rem;
+}
+
+.monthly__title {
+  color: hsl(28, 10%, 53%);
+  margin-bottom: 0.2rem;
+}
+
+.monthly__amount {
+  font-weight: 700;
+  font-size: 3.2rem;
+}
+
+.monthly__difference {
+  padding-bottom: 0.4rem;
+  color: hsl(28, 10%, 53%);
+}
+
+.monthly__difference--amount {
+  display: block;
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: hsl(25, 47%, 15%);
+}
+
+@media only screen and (min-width: 768px) {
+  .account-details__container {
+    width: 44rem;
+  }
+
+  .weekly-graph__bar {
+    width: 3.2em;
+    border-radius: 6px;
+  }
+
+  .monthly {
+    padding-bottom: 1rem;
+  }
+
+  .monthly__amount {
+    font-size: 4rem;
+  }
+}

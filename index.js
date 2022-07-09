@@ -19,27 +19,50 @@ const fetchData = async (path) => {
 const barGraphData = await fetchData('./data.json');
 console.log(barGraphData); // { day: string, amount: number }
 
+// refactored below
+// const highestDay = barGraphData.reduce(
+//   (acc, cV, i) => {
+//     const highest =
+//       cV.amount > acc.amount // if current > prev amount, then highest === [current]
+//         ? { dayIndex: [i], amount: cV.amount }
+//         : cV.amount === acc.amount // if current === prev amount, then highest === [...prev, current]
+//         ? { dayIndex: [...acc.dayIndex, i], amount: cV.amount }
+//         : acc;
+//     return highest;
+//   },
+//   { dayIndex: [], amount: 0 }
+// );
+// console.log(highestDay);
+
 // find highest spending day
-const highestDay = barGraphData.reduce(
-  (acc, cV, i) => {
-    const highest =
-      cV.amount > acc.amount // if current > prev amount, then highest === [current]
-        ? { dayIndex: [i], amount: cV.amount }
-        : cV.amount === acc.amount // if current === prev amount, then highest === [...prev, current]
-        ? { dayIndex: [...acc.dayIndex, i], amount: cV.amount }
-        : acc;
-    return highest;
-  },
-  { dayIndex: [], amount: 0 }
-);
+const weeklyAmounts = barGraphData.map((dayData) => dayData.amount);
+const highestDay = getHighestValue(weeklyAmounts);
 console.log(highestDay);
+
+function getHighestValue(weeklyExpenditures) {
+  let highestDailySpend = { dayIndex: [], amount: 0 };
+  let i = 0;
+  for (const dailySpend of weeklyExpenditures) {
+    if (dailySpend === highestDailySpend.amount)
+      highestDailySpend = {
+        dayIndex: [...highestDailySpend.dayIndex, i],
+        amount: dailySpend,
+      };
+    if (dailySpend > highestDailySpend.amount)
+      highestDailySpend = { dayIndex: [i], amount: dailySpend };
+    console.log(highestDailySpend);
+    i++;
+  }
+  return highestDailySpend;
+}
 
 // render bar graph items
 const barGraph = barGraphData
   .map((dayData, i) => {
-    const mostSpent = highestDay.dayIndex.includes(i);
     const barRatio = 100 / highestDay.amount;
     const barHeight = (dayData.amount * barRatio).toFixed(1);
+
+    const mostSpent = highestDay.dayIndex.includes(i);
     const bgColor = mostSpent ? 'hsl(186, 34%, 60%)' : 'hsl(10, 79%, 65%)';
     const divStyle = `style="height: ${barHeight}%; background-color: ${bgColor};"`;
 
